@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConTech - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- AOS CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Flash Messages Popup -->
+    <div id="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash-message {{ category }}">
+            <span class="message-text">{{ message }}</span>
+            <span class="close-btn" onclick="closeFlashMessage(this)">&times;</span>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+
+    <!-- Navbar start -->
+    <nav class="navbar">
+        <a href="/" class="logo" id="home-logo">
+            <i class="fa-solid fa-building-user"></i> <span class="logo-text">ConTech</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="/#contact">Contact</a></li>
+
+            {% if 'user' in session %}
+            <li><a href="{{ url_for('visuals') }}">Visuals</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('signup') }}">Signup</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+
+    <!-- Welcome -->
+    <header class="hero-banner" data-aos="fade-in">
+        <div class="hero-content-box" data-aos="fade-up">
+            <h1>Welcoming you to <span>ConTech...</span></h1>
+            <p>Ensuring accurate and real-time monitoring for <b>Concrete Curing</b> with advanced <b>Sensor
+                    Technology</b>.</p>
+            <a href="/about" class="cta-btn">Learn More</a>
+        </div>
+    </header>
+
+    <section class="sensor-info-section fade-in">
+        <h2>Our Smart Concrete Sensors</h2>
+        <p>ConTech uses Wireless Concrete Sensors to monitor Temperature, Strength, and Humidity in real-time, ensuring
+            Faster, Safer, and more Economical construction.</p>
+        <div class="sensor-feature-grid">
+            <div class="sensor-feature-card">
+                <i class="fa-solid fa-thermometer"></i>
+                <h3>Real-Time Monitoring</h3>
+                <p>Track Temperature, Humidity, and Strength 24/7 with high precision.</p>
+                <div class="extra">
+                    <p>Our embedded sensors stream real-time data continuously to the cloud, enabling site engineers to
+                        make informed decisions instantly. This reduces manual testing and ensures consistency
+                        throughout the curing process.</p>
+                </div>
+            </div>
+            <div class="sensor-feature-card">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Data Analytics</h3>
+                <p>Analyze curing trends and get AI-driven insights for optimal strength.</p>
+                <div class="extra">
+                    <p>Historical and live data is processed using machine learning models, offering early warnings for
+                        abnormal curing patterns. Our dashboard visualizes this data in easy-to-read charts, making
+                        complex decisions simple.</p>
+                </div>
+            </div>
+            <div class="sensor-feature-card">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Wireless & Easy</h3>
+                <p>No wires, no hassle! Sensors are embedded directly in the concrete.</p>
+                <div class="extra">
+                    <p>Installation is plug-and-play. Just place the sensor during the pour — no extra drilling or
+                        wiring required. Data transmission is handled over low-power protocols like Wi-Fi or LoRaWAN for
+                        efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Benefits -->
+    <section class="benefits-section" data-aos="fade-up">
+        <h2>Why Choose Contech?</h2>
+        <p>Traditional curing methods often lead to inefficiencies and structural weaknesses. ConTech’s smart monitoring
+            system brings precision and reliability to the process.</p>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fa-solid fa-shield"></i>
+                <h3>Enhanced Durability</h3>
+                <p>Optimize curing conditions to achieve maximum concrete strength and longevity.</p>
+                <div class="extra">
+                    <p>Proper curing ensures reduced microcracking, better load-bearing capacity, and longer structural
+                        lifespan, significantly decreasing the need for maintenance.</p>
+                </div>
+            </div>
+            <div class="benefit-card">
+                <i class="fa-solid fa-wallet"></i>
+                <h3>Cost-Efficiency</h3>
+                <p>Save on construction costs by reducing material wastage and preventing rework.</p>
+                <div class="extra">
+                    <p>By knowing exactly when the concrete has reached the required strength, you can strip formwork
+                        early and reduce project downtime, saving both time and money.</p>
+                </div>
+            </div>
+            <div class="benefit-card">
+                <i class="fa-solid fa-leaf"></i>
+                <h3>Eco-Friendly Approach</h3>
+                <p>Smart monitoring minimizes excessive resource usage, lowering carbon footprint.</p>
+                <div class="extra">
+                    <p>Efficient curing reduces unnecessary water use and overdesign, promoting sustainable practices
+                        and meeting green construction standards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- How Works -->
+    <section class="curing-process" data-aos="fade-up">
+        <h2>How ConTech Works ?</h2>
+        <p>Our system integrates IoT sensors, AI-powered analytics, and a cloud-based dashboard to deliver real-time
+            insights.</p>
+        <div class="curing-steps">
+            <div id="tosensor" class="curing-step-card">
+                <i class="fa-solid fa-microchip"></i>
+                <h3>1. Sensor Deployment</h3>
+                <p>Sensors are embedded in fresh concrete to begin monitoring.</p>
+            </div>
+            <div class="curing-step-card">
+                <i class="fa-solid fa-cloud"></i>
+                <h3>2. Data Collection</h3>
+                <p>Temperature and strength readings are uploaded to a Cloud database.</p>
+            </div>
+            <div class="curing-step-card">
+                <i class="fa-solid fa-laptop"></i>
+                <h3>3. AI-Based Analysis</h3>
+                <p>Machine learning models predict optimal curing conditions.</p>
+            </div>
+            <div class="curing-step-card">
+                <i class="fa-solid fa-bell"></i>
+                <h3>4. Alerts & Reports</h3>
+                <p>Receive real-time alerts and generate reports for Quality-assurance.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Team Section -->
+    <section class="team-section" data-aos="fade-up">
+        <h2>Get in touch with our Team</h2><br>
+        <p>You can contact our team by e-mail or via LinkedIn if you would like help finding out whether ConTech is the
+            right solution for your project.</p>
+        <div class="team-grid">
+            <!-- Mentor -->
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='images/mentor.jpg') }}" alt="Dr. Ram Manohar Nisarg NS">
+                <div class="member-info">
+                    <h3>Dr. Ram Manohar Nisarg NS</h3>
+                    <p class="designation"><i class="fa-solid fa-university"></i>Master Trainer at GLA University</p>
+                </div>
+                <div class="member-details">
+                    <p>Dr. Ram Manohar Nisarg NS is a faculty member at GLA University, serving in the Department of
+                        Computer Engineering & Applications (CEA).
+                        With extensive experience in academia and research, he has been actively involved in mentoring
+                        students in AI-driven innovations.
+                        As a guide for this project, he has provided valuable insights and direction, ensuring a strong
+                        technical foundation and real-world applicability.
+                        His expertise and mentorship have been instrumental in shaping the development of ConTech.</p>
+                    <p><i id="linkedinlogo" class="fa-brands fa-linkedin"></i> <a
+                            href="https://www.linkedin.com/in/dr-ram-manohar-nisarg-ns-6277741ab/"
+                            target="_blank">LinkedIn Profile</a></p>
+                    <p>
+                        <i id="emaillogo" class="fa-solid fa-envelope"></i>
+                        <a id="email-a" href="mailto:rammahonar.nisarg@gla.ac.in">rammahonar.nisarg@gla.ac.in</a>
+                    </p>
+
+                </div>
+            </div>
+
+            <!-- Team Member 1 -->
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='images/member1.png') }}" alt="Harshit">
+                <div class="member-info">
+                    <h3>Harshit</h3>
+                    <p class="designation"><i class="fa-solid fa-graduation-cap"></i> Student at GLA University</p>
+                </div>
+                <div class="member-details">
+                    <p>Harshit is currently in his sixth semester, pursuing a Bachelor of Technology in Artificial
+                        Intelligence and Machine Learning at GLA University.
+                        His passion for AI and technology drives him to explore innovative solutions and push the
+                        boundaries of learning.
+                        Working on the ConTech project has been an enriching experience for him, allowing him to apply
+                        theoretical knowledge to real-world challenges.
+                        His dedication and eagerness to contribute make him an integral part of the team, as he
+                        continuously strives to refine and enhance the project.</p>
+                    <p><i id="linkedinlogo" class="fa-brands fa-linkedin"></i> <a
+                            href="https://www.linkedin.com/in/harshit-sharma-051673350/" target="_blank">LinkedIn
+                            Profile</a></p>
+                    <p>
+                        <i id="emaillogo" class="fa-solid fa-envelope"></i>
+                        <a id="email-a"
+                            href="mailto:harshit.gla_cs.aiml22@gla.ac.in">harshit.gla_cs.aiml22@gla.ac.in</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='images/member2.png') }}" alt="Bhuvnesh Kumar">
+                <div class="member-info">
+                    <h3>Bhuvnesh Kumar</h3>
+                    <p class="designation"><i class="fa-solid fa-graduation-cap"></i> Student at GLA University</p>
+                </div>
+                <div class="member-details">
+                    <p>Bhuvnesh, a sixth-semester B.Tech student at GLA University, is specializing in Artificial
+                        Intelligence and Machine Learning.
+                        His enthusiasm for AI-driven advancements fuels his curiosity and motivates him to delve deeper
+                        into emerging technologies.
+                        Being part of the ConTech project has been a transformative journey for him, strengthening his
+                        problem-solving skills and
+                        giving him hands-on experience in collaborative development. His commitment and proactive
+                        approach reflect his passion for learning and innovation.</p>
+                    <p><i id="linkedinlogo" class="fa-brands fa-linkedin"></i> <a
+                            href="https://www.linkedin.com/in/3huvnesh/" target="_blank">LinkedIn Profile</a></p>
+                    <p>
+                        <i id="emaillogo" class="fa-solid fa-envelope"></i>
+                        <a id="email-a"
+                            href="mailto:bhuvnesh.kumar_cs.aiml22@gla.ac.in">bhuvnesh.kumar_cs.aiml22@gla.ac.in</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='images/member3.png') }}" alt="Dev Chikara">
+                <div class="member-info">
+                    <h3>Dev Chikara</h3>
+                    <p class="designation"><i class="fa-solid fa-graduation-cap"></i>
+                        Student at GLA University</p>
+                </div>
+                <div class="member-details">
+                    <p>Dev is a B.Tech student specializing in AI & ML at GLA University, currently in his sixth
+                        semester.
+                        With a keen interest in intelligent systems, he enjoys working on projects that challenge his
+                        creativity and analytical thinking.
+                        The ConTech project has provided him with an opportunity to apply his skills in a meaningful
+                        way, fostering both professional and personal growth.
+                        His dedication to the project is evident in his willingness to explore new ideas and contribute
+                        towards making the system more impactful.</p>
+                    <p><i id="linkedinlogo" class="fa-brands fa-linkedin"></i> <a
+                            href="https://www.linkedin.com/in/dev-chikara-535a17252/" target="_blank">LinkedIn
+                            Profile</a></p>
+                    <p>
+                        <i id="emaillogo" class="fa-solid fa-envelope"></i>
+                        <a id="email-a"
+                            href="mailto:dev.chikara_cs.aiml22@gla.ac.in">dev.chikara_cs.aiml22@gla.ac.in</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <p>Have questions? Reach out to us!</p>
+
+        <form class="contact-form" method="POST" action="{{ url_for('contact') }}" data-aos="fade-up">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+
+
+    <footer class="site-footer">
+        <p>&copy; 2025 ConTech. All Rights Reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: false, duration: 1000, easing: 'ease-in-out' });
+    </script>
+</body>
+
+</html>

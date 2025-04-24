@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConTech - About</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- AOS CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Flash Messages Popup -->
+    <div id="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash-message {{ category }}">
+            <span class="message-text">{{ message }}</span>
+            <span class="close-btn" onclick="closeFlashMessage(this)">&times;</span>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo" id="home-logo">
+            <i class="fa-solid fa-building-user"></i> <span class="logo-text">ConTech</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('about') }}" class="active">About</a></li>
+            <li><a href="/#contact">Contact</a></li>
+            {% if 'user' in session %}
+            <li><a href="{{ url_for('visuals') }}">Visuals</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('signup') }}">Signup</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Hero Banner -->
+    <header class="about-hero-banner">
+        <div class="about-hero-content" data-aos="fade-up">
+            <h1>About ConTech</h1>
+            <p>Revolutionizing Concrete Monitoring with IoT and AI</p>
+        </div>
+    </header>
+
+    <!-- Project Overview -->
+    <section class="about-overview-section" data-aos="fade-up">
+        <div class="about-container">
+            <h2><i class="fa-solid fa-lightbulb"></i> Project Overview</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        ConTech is a cutting-edge semester project developed by students at GLA University, focusing on
+                        an
+                        innovative concrete curing monitoring system that transforms traditional construction practices.
+                    </p>
+                    <p>
+                        The project combines IoT technology and real-time sensor data to monitor curing conditions,
+                        ensuring
+                        optimal strength development and structural safety.
+                    </p>
+                    <p>
+                        Wireless sensors, data analytics, and cloud access together empower professionals to make
+                        informed,
+                        proactive decisions for better construction outcomes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem & Solution -->
+    <section class="problem-solution-section" data-aos="fade-up">
+        <div class="about-container">
+            <div class="problem-box">
+                <h2><i class="fa-solid fa-exclamation-triangle"></i> The Problem</h2>
+                <p>Challenges in traditional concrete curing:</p>
+                <ul>
+                    <li><i class="fa-solid fa-circle-xmark"></i>
+                        No real-time data during critical curing phases</li>
+                    <li><i class="fa-solid fa-circle-xmark"></i> Use of destructive testing methods</li>
+                    <li><i class="fa-solid fa-circle-xmark"></i> Unoptimized strength development</li>
+                    <li><i class="fa-solid fa-circle-xmark"></i> Project delays due to manual inspections</li>
+                    <li><i class="fa-solid fa-circle-xmark"></i> Inconsistent quality control</li>
+                </ul>
+            </div>
+
+            <div class="solution-box">
+                <h2><i class="fa-solid fa-lightbulb"></i> Our Solution</h2>
+                <p>ConTech solves this with:</p>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Embedded wireless sensors for key metrics</li>
+                    <li><i class="fa-solid fa-check"></i> Cloud-based real-time monitoring</li>
+                    <li><i class="fa-solid fa-check"></i> Non-destructive, continuous data tracking</li>
+                    <li><i class="fa-solid fa-check"></i> Proactive alerts & automation</li>
+                    <li><i class="fa-solid fa-check"></i> Remote access via dashboard</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Architecture -->
+    <section id="sensor-deploy" class="technical-section" data-aos="fade-up">
+        <div class="about-container">
+            <h2><i class="fa-solid fa-microchip"></i> Technical Architecture</h2>
+            <div class="architecture-diagram">
+                <img src="{{ url_for('static', filename='images/architecture.png') }}" alt="ConTech Architecture">
+            </div>
+        </div>
+    </section>
+
+    <!-- Sensor Module Details -->
+    <section class="sensor-container" data-aos="fade-up">
+        <h1>Our Sensor Modules</h1>
+        <p class="sensor-intro">
+            At ConTech, we use a range of smart sensors to track real-time moisture and temperature during concrete
+            curing, ensuring durability and optimal strength development.
+        </p>
+
+        <!-- ESP8266 -->
+        <div class="sensor fade-in" data-aos="fade-up">
+            <div class="sensor-image">
+                <img src="{{ url_for('static', filename='images/esp8266.jpg') }}" alt="ESP8266 Wi-Fi Module">
+            </div>
+            <div class="sensor-details">
+                <h2>ESP8266 CH340 NodeMCU</h2>
+                <p>Enables real-time data communication and connectivity.</p>
+                <button class="more-btn" onclick="toggleDetails(this)">+ More details</button>
+                <div class="extra-details">
+                    <ul>
+                        <li>Built-in Wi-Fi module</li>
+                        <li>Microcontroller unit (MCU)</li>
+                        <li>Seamless data transmission to the cloud</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Moisture Sensor -->
+        <div class="sensor fade-in" data-aos="fade-up">
+            <div class="sensor-image">
+                <img src="{{ url_for('static', filename='images/soil_moisture.jpg') }}" alt="Moisture Sensor">
+            </div>
+            <div class="sensor-details">
+                <h2>Moisture Sensor Module</h2>
+                <p>Optimizes moisture levels throughout curing.</p>
+                <button class="more-btn" onclick="toggleDetails(this)">+ More details</button>
+                <div class="extra-details">
+                    <ul>
+                        <li>Measures moisture content in concrete</li>
+                        <li>Analog & digital output</li>
+                        <li>Reduces under/over-curing risks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- DHT22 -->
+        <div class="sensor fade-in" data-aos="fade-up">
+            <div class="sensor-image">
+                <img src="{{ url_for('static', filename='images/dht22.jpg') }}" alt="DHT22 Sensor">
+            </div>
+            <div class="sensor-details">
+                <h2>DHT22 Temperature & Humidity Sensor</h2>
+                <p>Ensures proper environmental monitoring during curing.</p>
+                <button class="more-btn" onclick="toggleDetails(this)">+ More details</button>
+                <div class="extra-details">
+                    <ul>
+                        <li>High-precision readings</li>
+                        <li>Temperature: -40 to +80°C</li>
+                        <li>Humidity: 0–100%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- DS18B20 -->
+        <div class="sensor fade-in" data-aos="fade-up">
+            <div class="sensor-image">
+                <img src="{{ url_for('static', filename='images/ds18b20.jpg') }}" alt="DS18B20 Sensor">
+            </div>
+            <div class="sensor-details">
+                <h2>DS18B20 Waterproof Temperature Sensor</h2>
+                <p>Offers durable and precise temperature tracking in wet conditions.</p>
+                <button class="more-btn" onclick="toggleDetails(this)">+ More details</button>
+                <div class="extra-details">
+                    <ul>
+                        <li>Waterproof & rugged design</li>
+                        <li>±0.5°C accuracy</li>
+                        <li>Ideal for long-distance and water-based setups</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Sensors? -->
+        <div class="why-sensors-section fade-in" data-aos="fade-up">
+            <h2>Why Sensor-Based Monitoring?</h2>
+            <p>
+                Replacing outdated curing methods, sensor-based monitoring offers:
+            </p>
+            <ul>
+                <li>Real-time environmental tracking</li>
+                <li>Smart alerts for anomalies</li>
+                <li>Data-backed decision-making</li>
+                <li>Improved strength, quality, and reliability</li>
+            </ul>
+        </div>
+    </section>
+
+
+
+    <footer class="site-footer">
+        <p>&copy; 2025 ConTech. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

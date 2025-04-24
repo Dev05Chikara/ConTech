@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ConTech - Visuals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo" id="home-logo">
+            <i class="fa-solid fa-building-user"></i>
+            <span class="logo-text">ConTech</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="/#contact">Contact</a></li>
+            {% if 'user' in session %}
+            <li><a href="{{ url_for('visuals') }}">Visuals</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('signup') }}">Signup</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Visuals Section -->
+    <div class="visual-container" data-aos="fade-up">
+        <!-- Sensor Data Section -->
+        <div class="sensor-data">
+            <h2>Live Sensor Data</h2>
+            <div class="sensor-cards">
+                <div class="sensor-item"><span>Environment Temp:</span> <span id="env-temp" class="received-data">{{ sensor_data.env_temp }}</span></div>
+                <div class="sensor-item"><span>Mixture Temp:</span> <span id="mix-temp" class="received-data">{{ sensor_data.mix_temp }}</span></div>
+                <div class="sensor-item"><span>Humidity:</span> <span id="humidity" class="received-data">{{ sensor_data.humidity }}</span></div>
+                <div class="sensor-item"><span>Soil Status:</span> <span id="soilstatus" class="received-data">{{ sensor_data.soil_status }}</span></div>
+                <div class="sensor-item"><span>Soil Moisture:</span> <span id="soilmoisture" class="received-data">{{ sensor_data.soil_moisture }}</span></div>
+            </div>
+
+            <!-- Export & Share Buttons -->
+            <div class="data-buttons">
+                <button id="exportCSV"><i class="fa-solid fa-file-csv"></i> Export as CSV</button>
+                <button id="shareData"><i class="fa-solid fa-share-nodes"></i> Share Data</button>
+            </div>
+        </div>
+
+        <!-- Graphs Section -->
+        <div class="graph-section">
+            <h2>Sensor Data Graphs</h2>
+
+            <div class="graph-container">
+                <canvas id="tempGraph" class="graph"></canvas>
+                <canvas id="mixtempGraph" class="graph hidden"></canvas>
+                <canvas id="humidityGraph" class="graph hidden"></canvas>
+                <canvas id="soilmoistureGraph" class="graph hidden"></canvas>
+            </div>
+
+            <div class="graph-controls">
+                <button id="prevGraph"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                <button id="nextGraph">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 ConTech. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <!-- Firebase Init -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDuoqv5t5rZb1amT28HxY1nakAk2FqgxcI",
+            authDomain: "contech-c5fd5.firebaseapp.com",
+            databaseURL: "https://contech-c5fd5-default-rtdb.firebaseio.com",
+            projectId: "contech-c5fd5",
+            storageBucket: "contech-c5fd5.appspot.com",
+            messagingSenderId: "201181873114",
+            appId: "1:201181873114:web:abdba41db1ba31c2d836e3",
+            measurementId: "G-2XPTVWBLTQ"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <!-- Real-time Listener -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sensorRef = firebase.database().ref("sensorData");
+    
+            sensorRef.on("value", (snapshot) => {
+                const data = snapshot.val();
+                console.log("Firebase data update received:", data);
+                if (data && window.updateLiveSensorReadings) {
+                    window.updateLiveSensorReadings(data);
+                }
+            });
+        });
+    </script>
+
+    <!-- Your main JS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+
+</body>
+
+</html>

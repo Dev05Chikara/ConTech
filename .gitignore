@@ -1,0 +1,50 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Flask specific
+instance/
+*.db
+*.sqlite3
+
+# Pytest cache
+.pytest_cache/
+
+# VS Code settings
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Compiled JS / CSS (optional if you're building frontend assets)
+*.min.js
+*.min.css
+
+# Logs
+*.log
+
+# Cache
+.cache/
+*.cache
+
+# Node.js dependencies (if using frontend tools like npm or yarn)
+node_modules/
+
+# Firebase credentials or service accounts (if used)
+firebase-adminsdk-*.json
+
+# Exported reports or downloads (optional)
+exports/
+downloads/
+*.csv
+*.pdf

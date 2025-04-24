@@ -1,0 +1,1477 @@
+/* General Page Styles start */
+* {
+    transition: all 0.3s ease-in-out;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 70px;
+    background-color: #fbf8f8ad;
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.fl {
+    display: flex;
+    height: 90vh;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* General Page Styles end */
+
+/* Navbar Start */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #da9e08, #faba19);
+    color: white;
+    padding: 15px 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 45px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo i {
+    margin-right: 8px;
+    color: white;
+}
+
+.logo-text {
+    font-size: 22px;
+    font-weight: bold;
+    color: white !important;
+    text-decoration: none;
+    min-width: 150px;
+    white-space: nowrap;
+    /* No wrap means remain in one line... */
+    display: inline-block;
+    transition: none;
+}
+
+/* Default style */
+.logo:visited,
+.logo:hover,
+.logo:active {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-links {
+    margin-right: 10%;
+    list-style: none;
+    display: flex;
+    gap: 50px;
+}
+
+.nav-links li {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-links li a {
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 18px;
+    display: inline-block;
+    transition: transform 0.2s ease, color 0.2s ease;
+    position: relative;
+}
+
+/* Hover Effect */
+.nav-links li a:hover {
+    transform: scale(0.9);
+    /* Shrink Effect */
+}
+
+/* Underline Effect */
+.nav-links li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0%;
+    height: 1.5px;
+    background-color: white;
+    transition: width 0.2s ease-in-out;
+}
+
+.nav-links li a:hover::after {
+    width: 90%;
+}
+
+/* Navbar End */
+
+/*Home start */
+/* hero-banner */
+.hero-banner {
+    position: relative;
+    height: 310px;
+    text-align: center;
+    background: url("../images/hero-bg.jpg") no-repeat center center/cover;
+    background-size: cover;
+    color: rgb(7, 47, 135);
+    padding: 100px 20px;
+    overflow: hidden;
+}
+
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../images/hero-bg.jpg") no-repeat center center/cover;
+    background-size: cover;
+    filter: blur(7px);
+    /* for blurring the bg image... */
+    z-index: 1;
+}
+
+.hero-content-box {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content-box h1 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.hero-content-box span {
+    font-size: 2.0em;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, rgb(9, 49, 135), #0b488f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-content-box p {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+}
+
+.cta-btn {
+    background: #eeb014;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1em;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    background: #a9840b;
+}
+
+/* Sensor Information */
+.sensor-info-section {
+    position: relative;
+    z-index: 3;
+    /* keep text unblur */
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: -220px;
+}
+
+.sensor-info-section h2 {
+    font-weight: bold;
+    font-size: 2em;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #f19428, #f3a246);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+
+.sensor-info-section>p {
+    color: rgba(245, 245, 245, 0.938);
+}
+
+.sensor-feature-grid {
+
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.sensor-feature-card {
+    border-bottom: 3px solid #f3a246;
+    border-radius: 10px;
+    box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.1);
+    background: white;
+    padding: 20px;
+    cursor: pointer;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.sensor-feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.sensor-feature-card i {
+    font-size: 2em;
+    color: #f2a900;
+    margin-bottom: 10px;
+}
+
+.sensor-feature-card h3 {
+    font-size: 1.3em;
+}
+
+/* Benefits Section */
+.benefits-section {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.benefits-section h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.benefits-section p {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.benefits-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.benefit-card {
+    cursor: pointer;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 280px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-card i {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.benefit-card h3 {
+    font-size: 1.4rem;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.benefit-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Hide extra details by default */
+.extra-details {
+    display: none;
+    margin-top: 10px;
+    color: #444;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Show when active */
+.card-active .extra-details {
+    display: block;
+}
+
+/* Dull effect on inactive cards */
+.card-dull {
+    opacity: 0.3;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Add popup-style visual highlight for active card (optional) */
+.card-active {
+    background-color: #f9f9f9;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    position: relative;
+}
+
+.benefit-card .extra,
+.sensor-feature-card .extra {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+  }
+  
+  /* When active — expand smoothly */
+  .benefit-card.card-active .extra,
+  .sensor-feature-card.card-active .extra {
+    max-height: 500px; /* Set to max height of your content */
+    opacity: 1;
+  }
+  
+
+
+/* Curing Process Section */
+.curing-process {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.curing-process h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.curing-process p {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.curing-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.curing-step-card {
+    cursor: pointer;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 280px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.curing-step-card:hover {
+    transform: translateY(-5px);
+}
+
+.curing-step-card i {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.curing-step-card h3 {
+    font-size: 1.4rem;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.curing-step-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.benefit-card,
+.curing-step-card {
+    border-bottom: 4px solid #007bff;
+    border-radius: 10px;
+    box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sensor-feature-card:hover,
+.benefit-card:hover,
+.curing-step-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 18px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Meet the Team Section */
+.team-section {
+    text-align: center;
+    background: linear-gradient(to right, #0a2b68, #4a90e2);
+    color: white;
+    padding: 50px 20px;
+}
+
+.team-section h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+
+
+/* Team Grid */
+.team-grid {
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px;
+    position: relative;
+}
+
+.team-member {
+    flex: 1;
+    transition: all 0.3s ease-in-out;
+    opacity: 1;
+    transform: scale(1);
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.team-member:hover {
+    flex: 2;
+    transform: scale(1.1);
+    opacity: 1;
+    border: 3px solid #033591;
+    border-radius: 10px;
+}
+
+.team-grid:hover .team-member:not(:hover) {
+    opacity: 0.5;
+    transform: scale(0.9);
+}
+
+
+
+/* Image */
+.team-member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* Name & Designation */
+.member-info h3 {
+    font-size: 1.2rem;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.member-info .designation {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #007bff;
+}
+
+/* Hidden Details */
+.member-details {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
+}
+
+.member-details>p {
+    color: black;
+}
+
+#linkedinlogo {
+    color: #007bff;
+}
+
+#emaillogo {
+    color: #a9840b;
+}
+
+#email-a {
+    color: #a9840b;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+#email-a:hover {
+    text-decoration: underline;
+}
+
+
+/* Details on Hover */
+.team-member:hover .member-details {
+    opacity: 1;
+    max-height: 200px;
+    margin-top: 10px;
+}
+
+/* LinkedIn Link */
+.member-details a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.member-details a:hover {
+    text-decoration: underline;
+}
+
+/* University Icon */
+.team-member .designation i {
+    margin-right: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .team-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+
+/* Contact Section */
+.contact-section {
+    text-align: center;
+    background: linear-gradient(to right, #0a2b68, #4a90e2);
+    color: white;
+    padding: 50px 20px;
+}
+
+.contact-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    margin: auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.contact-form input {
+    height: 40px;
+}
+
+.contact-form button {
+    background: #f2a900;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    background: #bc9333;
+}
+
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    background: linear-gradient(to right, #002040, #004285);
+    color: white;
+    padding: 20px;
+    font-size: 0.9em;
+}
+
+/* Home end */
+
+
+/* ---------------------- About Page: Sensor Module Styling ---------------------- */
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.about-section-title {
+    font-size: 32px;
+    color: rgb(7, 47, 135);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* ---------------------- Hero Banner ---------------------- */
+
+.about-hero-banner {
+    background: linear-gradient(to right, #0a2b68, #4a90e2);
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.about-hero-banner h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.about-hero-banner p {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+/* ---------------------- Project Overview ---------------------- */
+
+.about-overview-section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+    flex: 2;
+}
+
+/* ---------------------- Problem & Solution ---------------------- */
+
+.problem-solution-section {
+    padding: 60px 0;
+    background-color: #ffffff;
+}
+
+.problem-box,
+.solution-box {
+    background-color: #f4f7fa;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.about-container h2,
+.problem-box h2,
+.solution-box h2 {
+    font-size: 28px;
+    color: #0a2b68;
+    margin-bottom: 15px;
+}
+
+.problem-box ul,
+.solution-box ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.problem-box li,
+.solution-box li {
+    list-style: none;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.problem-box li i {
+    margin-right: 8px;
+    color: red;
+}
+
+.solution-box li i {
+    margin-right: 8px;
+    color: green;
+}
+
+/* ---------------------- Technical Architecture ---------------------- */
+
+.technical-section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.technical-section h2 {
+    font-size: 32px;
+    color: #072f87;
+    margin-bottom: 30px;
+}
+
+.architecture-diagram img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------------------- Sensor Module Styling ---------------------- */
+
+.sensor-container {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sensor-container h1 {
+    color: rgb(7, 47, 135);
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.sensor {
+    display: flex;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 900px;
+}
+
+.sensor:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.sensor-image {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+    overflow: hidden;
+}
+
+.sensor-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.sensor-details {
+    flex: 2;
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f4f7fa;
+}
+
+.sensor-details h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0a2b68;
+    margin-bottom: 10px;
+}
+
+.sensor-details p {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.5;
+}
+
+.more-btn {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background: linear-gradient(to right, #0a2b68, #4a90e2);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color 0.3s ease;
+}
+
+.more-btn:hover {
+    background-color: rgb(5, 35, 100);
+}
+
+.extra-details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0;
+    transition: max-height 0.9s ease, opacity 0.8s ease, margin-top 0.8s ease;
+    display: block;
+}
+
+.extra-details.show {
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 15px;
+}
+
+.extra-details ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.extra-details li {
+    margin-bottom: 8px;
+    color: #333;
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+/* ---------------------- Why Sensors Section ---------------------- */
+
+.why-sensors-section {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 40px;
+    max-width: 900px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.why-sensors-section h2 {
+    font-size: 28px;
+    color: #0a2b68;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.why-sensors-section p,
+.why-sensors-section li {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+}
+
+.why-sensors-section ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+/* ---------------------- Animations ---------------------- */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.7s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------------------- Responsive Styling ---------------------- */
+
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+    }
+
+    .sensor {
+        flex-direction: column;
+    }
+
+    .sensor-details {
+        padding: 20px;
+    }
+
+    .sensor-container h1 {
+        font-size: 28px;
+    }
+
+    .about-hero-banner h1 {
+        font-size: 36px;
+    }
+
+    .about-hero-banner p {
+        font-size: 16px;
+    }
+
+    .about-section-title {
+        font-size: 26px;
+    }
+}
+
+
+
+
+/* ---------------------- Visuals Page Styling ---------------------- */
+
+.visual-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 35px;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1500px;
+    margin: auto;
+}
+
+/* ---------------------- Sensor Data Section ---------------------- */
+
+.sensor-data {
+    flex: 1.5;
+    max-width: 320px;
+    background: linear-gradient(135deg, #f9fcff, #e6f0fa);
+    padding: 25px 20px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    margin-top: 5%;
+}
+
+/* Sensor Heading */
+.sensor-data h2 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 25px;
+    color: #052c71;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Sensor Cards List */
+.sensor-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+/* Individual Sensor Item */
+.sensor-item {
+    background: #f4f7fa;
+    padding: 14px 16px;
+    border-left: 5px solid #0aa7eb;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #1b1f2a;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.sensor-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Received data highlight */
+.received-data {
+    color: rgb(232, 56, 56);
+}
+
+/* ---------------------- Sensor Data Buttons ---------------------- */
+
+.data-buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.data-buttons button,
+#exportData,
+#shareData {
+    background: linear-gradient(135deg, #0aa7eb, #0771e3);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+    text-align: center;
+}
+
+.data-buttons button:hover,
+#exportData:hover,
+#shareData:hover {
+    background: linear-gradient(135deg, #025063, #033166);
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.data-buttons button:active,
+#exportData:active,
+#shareData:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------------------- Graph Section ---------------------- */
+
+/* ---------------------- Enhanced Graph Section ---------------------- */
+
+.graph-section {
+    flex: 3;
+    background: linear-gradient(135deg, #f9fcff, #e6f0fa);
+    margin-top: 10px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 25px;
+    transition: all 0.3s ease-in-out;
+    height: 100%;
+    /* Fill available height to balance layout */
+}
+
+.graph-section>h2 {
+    color: #052c71;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.graph-container {
+    width: 100%;
+    height: 52vh;
+    position: relative;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.graph-container:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+.graph {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    border-radius: 8px;
+}
+
+.graph-controls {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.graph-controls button {
+    background: linear-gradient(135deg, #0771e3, #0aa7eb);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.graph-controls button:hover {
+    background: linear-gradient(135deg, #033166, #025063);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------------------- Graph Switching Hidden Class ---------------------- */
+
+.hidden {
+    display: none !important;
+}
+
+/* ---------------------- Responsive (Optional) ---------------------- */
+
+@media screen and (max-width: 960px) {
+    .visual-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sensor-data {
+        margin-top: 30px;
+        max-width: 90%;
+    }
+
+    .graph-section {
+        width: 100%;
+        margin-top: 30px;
+        padding: 25px 15px;
+    }
+
+    .graph-container {
+        height: 360px;
+    }
+}
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .visual-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sensor-data,
+    .graph-section {
+        width: 90%;
+        max-width: none;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.graph-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.graph-controls button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    background-color: #210000;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.graph-controls button:hover {
+    background-color: #1336a7;
+}
+
+.sensor-image:hover img {
+    transform: scale(1.1);
+}
+
+.sensor-details {
+    flex: 1;
+    padding: 20px;
+    text-align: left;
+}
+
+.sensor-details h2 {
+    color: #210000;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.sensor-details p {
+    color: #333;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .sensor {
+        flex-direction: column;
+        margin: 20px 10px;
+    }
+
+    .sensor-image {
+        width: 100%;
+        height: 250px;
+    }
+
+    .sensor-details {
+        width: 100%;
+    }
+}
+
+/* Responsive Design End */
+
+/* Fade-in Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Login and signup start */
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    /* Stack elements inside vertically */
+    width: 800px;
+    position: relative;
+    background: white;
+    border-radius: 10px;
+    overflow: visible;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    /* Center the logo */
+    padding: 20px 0;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 0;
+    width: 100%;
+    height: 2.5px;
+    background-color: #dfa104;
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 2.5px;
+    background-color: #dfa104;
+}
+
+.header-container {
+    text-align: center;
+    /* Center the image */
+    margin-bottom: 10px;
+    /* Space between logo and form */
+}
+
+.header-container img {
+    width: 200px;
+    border-radius: 20%;
+}
+
+.tagline {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #003366;
+    margin-top: 10px;
+}
+
+
+.content {
+    display: flex;
+    width: 100%;
+}
+
+.animation-container {
+    margin-top: -25px;
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    padding: 20px;
+}
+
+.animation-container img {
+    width: 100%;
+    max-width: 200px;
+}
+
+.form-container {
+    width: 65%;
+    padding: 40px;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #003366;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background: #003366;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-container p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.form-container a {
+    color: #003366;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/*login and signup end */
+
+
+
+/* Centered Flash Message */
+#flash-messages {
+    position: fixed;
+    top: 100;
+    left: 60vw;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: auto;
+}
+
+/* Flash Message Styling */
+.flash-message {
+    background-color: #051957;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    text-align: center;
+    opacity: 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 250px;
+    max-width: 400px;
+    animation: dropAnimation 3s ease-out forwards;
+}
+
+/* Water Drop Animation */
+@keyframes dropAnimation {
+    0% {
+        transform: translate(-50%, -100px) scaleY(0.3);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translate(-50%, 20px) scaleY(1.2);
+        opacity: 1;
+    }
+
+    70% {
+        transform: translate(-50%, 0px) scaleY(0.9);
+    }
+
+    100% {
+        transform: translate(-50%, 10px) scaleY(1);
+    }
+}
+
+/* Close Button */
+.close-btn {
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+}
