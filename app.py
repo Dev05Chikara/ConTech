@@ -4,6 +4,19 @@ import os
 import csv
 from datetime import datetime
 from firebase_data import get_sensor_data
+from dotenv import load_dotenv
+
+# ------------------- LOAD .env -------------------
+load_dotenv()  # ✅ This will load .env file in your root directory
+
+app = Flask(__name__)
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "fallback_secret")  # ✅ Use secret from .env
+
+# ------------------- DATABASE CONFIG -------------------
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///contech.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
 
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
