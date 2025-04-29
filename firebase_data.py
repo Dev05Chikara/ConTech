@@ -24,7 +24,7 @@ if not firebase_admin._apps:
 
     cred = credentials.Certificate(cred_dict)
     firebase_admin.initialize_app(cred, {
-        'databaseURL': 'https://contech-c5fd5-default-rtdb.firebaseio.com/'
+        'databaseURL': os.getenv('FIREBASE_DB_URL')
     })
 
 def get_sensor_data():

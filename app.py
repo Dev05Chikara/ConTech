@@ -7,22 +7,23 @@ from firebase_data import get_sensor_data
 from dotenv import load_dotenv
 
 # ------------------- LOAD .env -------------------
-load_dotenv()  # ✅ This will load .env file in your root directory
+load_dotenv()  # Load .env file in your root directory
 
 app = Flask(__name__)
-app.secret_key = os.getenv("FLASK_SECRET_KEY", "fallback_secret")  # ✅ Use secret from .env
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "fallback_secret")
 
 # ------------------- DATABASE CONFIG -------------------
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///contech.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+# Use PostgreSQL with the exact connection string from Render
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
 
+# Add connection pooling for better performance
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    'pool_size': 5,
+    'max_overflow': 10,
+    'pool_timeout': 30,
+    'pool_recycle': 1800,
+}
 
-app = Flask(__name__)
-app.secret_key = "your_secret_key"
-
-# ------------------- DATABASE CONFIG -------------------
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///contech.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -73,7 +74,6 @@ def export_data():
         flash("No data available to export.", "warning")
         return redirect(url_for("visuals"))
 
-
     headers = ["Time", "Environment Temperature", "Mixture Temperature", "Humidity", "Moisture"]
     row = [
         value.get("time", "N/A"),
@@ -83,10 +83,14 @@ def export_data():
         value.get("moisture", "N/A")
     ]
     
+    # Make sure the static directory exists
+    static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
+    if not os.path.exists(static_dir):
+        os.makedirs(static_dir)
 
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     filename = f"sensor_data_{timestamp}.csv"
-    file_path = os.path.join("static", filename)
+    file_path = os.path.join(static_dir, filename)
 
     with open(file_path, "w", newline="") as file:
         writer = csv.writer(file)
@@ -160,4 +164,6 @@ def contact():
     return redirect(url_for("home"))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Use PORT environment variable if available (Render sets this)
+    port = int(os.getenv("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
